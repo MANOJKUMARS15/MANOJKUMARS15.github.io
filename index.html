@@ -3,357 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadow Realms - A Text RPG Adventure</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background-color: #0a0a0a;
-            color: #cccccc;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 20px;
-        }
-        
-        h1 {
-            color: #9e5a63;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 0 0 5px #ff6b81;
-        }
-        
-        h2 {
-            color: #63a69e;
-        }
-        
-        .game-container {
-            background-color: #111;
-            border: 1px solid #444;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        #story-text {
-            min-height: 200px;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-        
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            background-color: #222;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .status-item {
-            flex: 1;
-            text-align: center;
-            padding: 5px;
-        }
-        
-        .status-item span {
-            font-weight: bold;
-            color: #63a69e;
-        }
-        
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .option-button {
-            background-color: #222;
-            color: #cccccc;
-            border: 1px solid #444;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s;
-            font-family: 'Courier New', monospace;
-            text-align: left;
-        }
-        
-        .option-button:hover {
-            background-color: #333;
-            border-color: #63a69e;
-            transform: translateX(5px);
-        }
-        
-        #player-input {
-            display: flex;
-            margin-top: 20px;
-        }
-        
-        #command-input {
-            flex: 1;
-            background-color: #222;
-            color: #cccccc;
-            border: 1px solid #444;
-            padding: 10px;
-            font-family: 'Courier New', monospace;
-            border-radius: 5px 0 0 5px;
-        }
-        
-        #submit-command {
-            background-color: #63a69e;
-            color: #111;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .inventory-section {
-            margin-top: 30px;
-        }
-        
-        .inventory-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .inventory-item {
-            background-color: #222;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #444;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.8em;
-            color: #666;
-            border-top: 1px solid #444;
-            padding-top: 20px;
-        }
-    </style>
+    <title>Sri Sai Engineering</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>SHADOW REALMS</h1>
-        <p>A journey through the veil between worlds</p>
+        <h1>Sri Sai Engineering</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <main>
-        <div class="game-container">
-            <div class="status-bar">
-                <div class="status-item">Health: <span id="health-value">100</span></div>
-                <div class="status-item">Gold: <span id="gold-value">25</span></div>
-                <div class="status-item">Level: <span id="level-value">1</span></div>
-                <div class="status-item">XP: <span id="xp-value">0</span>/100</div>
-            </div>
-            
-            <div id="story-text">
-                You awaken in a dimly lit chamber, the air thick with the scent of ancient stone and distant memories. The last thing you remember is following a mysterious map to the ruins of Eldervale, searching for the legendary Shadow Crystal.
-                <br><br>
-                As your eyes adjust to the darkness, you notice three pathways before you:
-            </div>
-            
-            <div class="options-container">
-                <button class="option-button" onclick="chooseOption(1)">1. Follow the narrow passageway that seems to lead deeper underground</button>
-                <button class="option-button" onclick="chooseOption(2)">2. Approach the faint blue light emanating from the eastern corridor</button>
-                <button class="option-button" onclick="chooseOption(3)">3. Climb the crumbling staircase toward what might be an exit</button>
-            </div>
-            
-            <div id="player-input">
-                <input type="text" id="command-input" placeholder="Enter custom command...">
-                <button id="submit-command" onclick="processCommand()">SUBMIT</button>
-            </div>
-        </div>
-        
-        <div class="inventory-section">
-            <h2>Inventory</h2>
-            <div class="inventory-items">
-                <div class="inventory-item">Rusty Dagger (Dmg: 3-5)</div>
-                <div class="inventory-item">Torch (3 hours)</div>
-                <div class="inventory-item">Health Potion (x2)</div>
-                <div class="inventory-item">Mysterious Key</div>
-            </div>
-        </div>
-    </main>
-    
-    <footer>
-        <p>Shadow Realms - Text RPG Adventure &copy; 2025</p>
-    </footer>
 
-    <script>
-        // Game state
-        const gameState = {
-            health: 100,
-            gold: 25,
-            level: 1,
-            xp: 0,
-            currentLocation: "startingChamber",
-            inventory: [
-                {name: "Rusty Dagger", type: "weapon", damage: [3, 5]},
-                {name: "Torch", type: "item", duration: 180},
-                {name: "Health Potion", type: "consumable", effect: "health", value: 25, quantity: 2},
-                {name: "Mysterious Key", type: "key", forLocation: "ancientChest"}
-            ]
-        };
-        
-        // Game locations and their narratives
-        const locations = {
-            startingChamber: {
-                description: "You are in a dimly lit chamber with ancient stone walls. Three pathways lead from here: a narrow passage going deeper, an eastern corridor with blue light, and a crumbling staircase.",
-                options: [
-                    {id: 1, text: "Follow the narrow passageway that seems to lead deeper underground", destination: "deepPassage"},
-                    {id: 2, text: "Approach the faint blue light emanating from the eastern corridor", destination: "blueLightCorridor"},
-                    {id: 3, text: "Climb the crumbling staircase toward what might be an exit", destination: "crumblingStairs"}
-                ]
-            },
-            deepPassage: {
-                description: "The narrow passage winds downward, becoming increasingly cold. Water drips from the ceiling, and you hear faint skittering sounds in the darkness. Ahead, the passage opens into a larger cavern.",
-                options: [
-                    {id: 1, text: "Enter the cavern cautiously", destination: "crystalCavern"},
-                    {id: 2, text: "Search the walls of the passage for hidden openings", destination: "hiddenAlcove"},
-                    {id: 3, text: "Return to the starting chamber", destination: "startingChamber"}
-                ]
-            },
-            blueLightCorridor: {
-                description: "The blue light grows stronger as you move down the eastern corridor. The walls here are inscribed with ancient runes that seem to pulse with energy. At the end of the corridor stands a mysterious archway filled with swirling blue energy.",
-                options: [
-                    {id: 1, text: "Step through the archway", destination: "magicRealm"},
-                    {id: 2, text: "Examine the runes more closely", destination: "runeDiscovery"},
-                    {id: 3, text: "Return to the starting chamber", destination: "startingChamber"}
-                ]
-            }
-        };
-        
-        // Function to handle option selection
-        function chooseOption(optionId) {
-            const currentLocation = locations[gameState.currentLocation];
-            const selectedOption = currentLocation.options.find(option => option.id === optionId);
-            
-            if (selectedOption) {
-                gameState.currentLocation = selectedOption.destination;
-                updateGameDisplay();
-                
-                // Add some XP for making a choice
-                addExperience(5);
-            }
-        }
-        
-        // Function to process custom commands
-        function processCommand() {
-            const commandInput = document.getElementById('command-input');
-            const command = commandInput.value.toLowerCase().trim();
-            
-            let responseText = "";
-            
-            if (command.includes("look") || command.includes("examine")) {
-                responseText = locations[gameState.currentLocation].description;
-            } else if (command.includes("inventory") || command === "i") {
-                responseText = "You are carrying: " + gameState.inventory.map(item => `${item.name}${item.quantity ? ` (x${item.quantity})` : ""}`).join(", ");
-            } else if (command.includes("health") || command.includes("potion")) {
-                const healthPotion = gameState.inventory.find(item => item.name === "Health Potion" && item.quantity > 0);
-                if (healthPotion) {
-                    gameState.health = Math.min(100, gameState.health + healthPotion.value);
-                    healthPotion.quantity--;
-                    if (healthPotion.quantity <= 0) {
-                        gameState.inventory = gameState.inventory.filter(item => item.name !== "Health Potion");
-                    }
-                    responseText = `You drink a health potion and recover ${healthPotion.value} health points.`;
-                    updateGameDisplay();
-                } else {
-                    responseText = "You don't have any health potions left.";
-                }
-            } else {
-                responseText = "You're not sure how to do that right now.";
-            }
-            
-            document.getElementById('story-text').innerHTML += `<br><br>> ${command}<br>${responseText}`;
-            commandInput.value = "";
-            
-            // Scroll to bottom of story text
-            const storyText = document.getElementById('story-text');
-            storyText.scrollTop = storyText.scrollHeight;
-        }
-        
-        // Function to update the game display based on current state
-        function updateGameDisplay() {
-            // Update status bar
-            document.getElementById('health-value').textContent = gameState.health;
-            document.getElementById('gold-value').textContent = gameState.gold;
-            document.getElementById('level-value').textContent = gameState.level;
-            document.getElementById('xp-value').textContent = gameState.xp;
-            
-            // Update story text and options
-            const location = locations[gameState.currentLocation];
-            document.getElementById('story-text').innerHTML = location.description;
-            
-            // Update options
-            const optionsContainer = document.querySelector('.options-container');
-            optionsContainer.innerHTML = '';
-            
-            location.options.forEach(option => {
-                const optionButton = document.createElement('button');
-                optionButton.className = 'option-button';
-                optionButton.textContent = `${option.id}. ${option.text}`;
-                optionButton.onclick = () => chooseOption(option.id);
-                optionsContainer.appendChild(optionButton);
-            });
-            
-            // Update inventory display
-            const inventoryContainer = document.querySelector('.inventory-items');
-            inventoryContainer.innerHTML = '';
-            
-            gameState.inventory.forEach(item => {
-                const inventoryItem = document.createElement('div');
-                inventoryItem.className = 'inventory-item';
-                
-                let itemText = item.name;
-                if (item.type === "weapon") {
-                    itemText += ` (Dmg: ${item.damage[0]}-${item.damage[1]})`;
-                } else if (item.type === "consumable" && item.quantity > 1) {
-                    itemText += ` (x${item.quantity})`;
-                } else if (item.type === "item" && item.duration) {
-                    const hours = Math.floor(item.duration / 60);
-                    const minutes = item.duration % 60;
-                    itemText += ` (${hours}h ${minutes}m)`;
-                }
-                
-                inventoryItem.textContent = itemText;
-                inventoryContainer.appendChild(inventoryItem);
-            });
-        }
-        
-        // Function to add experience points and handle leveling up
-        function addExperience(amount) {
-            gameState.xp += amount;
-            
-            // Check for level up (simple formula: 100 XP per level)
-            if (gameState.xp >= gameState.level * 100) {
-                gameState.level++;
-                gameState.health = 100; // Restore health on level up
-                
-                // Display level up message
-                document.getElementById('story-text').innerHTML += `<br><br><strong>Level Up!</strong> You are now level ${gameState.level}!`;
-            }
-            
-            updateGameDisplay();
-        }
-        
-        // Initialize the game
-        updateGameDisplay();
-    </script>
+    <section id="home">
+        <h2>Welcome to Sri Sai Engineering</h2>
+        <p>We provide high-precision CNC machining and engineering solutions.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Sri Sai Engineering specializes in high-quality CNC machining, ensuring precision and reliability.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>CNC Milling</li>
+            <li>CNC Turning</li>
+            <li>Custom Engineering Solutions</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@srisai-engg.com</p>
+        <p>Phone: +91-XXXXXXXXXX</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sri Sai Engineering. All rights reserved.</p>
+    </footer>
 </body>
 </html>
